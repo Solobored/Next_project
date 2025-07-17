@@ -2,6 +2,9 @@ import postgres from "postgres"
 import bcryptjs from "bcryptjs" // Changed from bcrypt to bcryptjs
 import { invoices, customers, users, revenue } from "../lib/placeholder-data"
 
+// Force this page to be dynamic (not static)
+export const dynamic = "force-dynamic"
+
 const sql = postgres(process.env.POSTGRES_URL, { ssl: "require" })
 
 async function seedUsers() {
