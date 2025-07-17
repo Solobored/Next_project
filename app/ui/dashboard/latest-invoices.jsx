@@ -22,7 +22,7 @@ export default async function LatestInvoices() {
               >
                 <div className="flex items-center">
                   <Image
-                    src={invoice.image_url || "/placeholder.svg"}
+                    src={invoice.image_url || "/placeholder.svg?height=32&width=32"}
                     alt={`${invoice.name}'s profile picture`}
                     className="mr-4 rounded-full"
                     width={32}

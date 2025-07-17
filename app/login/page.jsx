@@ -1,5 +1,5 @@
 import AcmeLogo from "@/app/ui/acme-logo"
-import LoginForm from "@/app/ui/login-form"
+import LoginForm from "@/app/ui/login-form" // Ensure this import is correct
 import { Suspense } from "react"
 
 export const metadata = {
@@ -16,7 +16,7 @@ export default function LoginPage() {
           </div>
         </div>
         <Suspense>
-          <LoginForm />
+          <LoginForm /> {/* Ensure LoginForm is rendered here */}
         </Suspense>
       </div>
     </main>

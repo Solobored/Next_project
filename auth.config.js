@@ -1,5 +1,5 @@
 import { z } from "zod"
-import bcrypt from "bcryptjs" // Changed from bcrypt to bcryptjs
+import bcryptjs from "bcryptjs"
 import postgres from "postgres"
 import Credentials from "next-auth/providers/credentials"
 
@@ -28,7 +28,7 @@ export const authConfig = {
           const user = await getUser(email)
           if (!user) return null
 
-          const passwordsMatch = await bcrypt.compare(password, user.password)
+          const passwordsMatch = await bcryptjs.compare(password, user.password)
 
           if (passwordsMatch) return user
         }
@@ -45,10 +45,12 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
-      if (isOnDashboard) {
+      const isOnSeed = nextUrl.pathname.startsWith("/seed")
+
+      if (isOnDashboard || isOnSeed) {
         if (isLoggedIn) return true
         return false // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
+      } else if (isLoggedIn && nextUrl.pathname === "/login") {
         return Response.redirect(new URL("/dashboard", nextUrl))
       }
       return true

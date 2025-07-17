@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { authConfig } from "./auth.config"
 import { z } from "zod"
-import bcrypt from "bcryptjs"
+import bcryptjs from "bcryptjs"
 import postgres from "postgres"
 
 const sql = postgres(process.env.POSTGRES_URL, { ssl: "require" })
@@ -29,30 +29,25 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data
-          console.log("Attempting login for email:", email) // Debug log
+          console.log("Attempting login for email:", email)
 
           const user = await getUser(email)
           if (!user) {
-            console.log("User not found for email:", email) // Debug log
+            console.log("User not found for email:", email)
             return null
           }
-          console.log("User found:", user.email) // Debug log
-          // console.log("User password hash from DB:", user.password); // Be careful logging sensitive data in production!
-          // console.log("Provided password:", password); // Be careful logging sensitive data in production!
+          console.log("User found:", user.email)
 
-          const passwordsMatch = await bcrypt.compare(password, user.password)
-          console.log("Passwords match:", passwordsMatch) // Debug log
+          const passwordsMatch = await bcryptjs.compare(password, user.password)
+          console.log("Passwords match:", passwordsMatch)
 
           if (passwordsMatch) {
-            console.log("Authentication successful for user:", user.email) // Debug log
+            console.log("Authentication successful for user:", user.email)
             return user
           }
         }
 
-        console.log("Invalid credentials - parsedCredentials.success:", parsedCredentials.success) // Debug log
-        if (!parsedCredentials.success) {
-          console.log("Validation errors:", parsedCredentials.error.flatten().fieldErrors) // Debug log
-        }
+        console.log("Invalid credentials")
         return null
       },
     }),

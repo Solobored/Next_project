@@ -1,8 +1,29 @@
-import { auth } from "./auth" // Import the pre-configured auth instance
+import { auth } from "./auth"
 
-export default auth // Export the auth instance directly
+export default auth((req) => {
+  const { nextUrl } = req
+  const isLoggedIn = !!req.auth
+
+  const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
+  const isOnSeed = nextUrl.pathname.startsWith("/seed")
+  const isOnLogin = nextUrl.pathname.startsWith("/login")
+
+  // Protect dashboard and seed routes
+  if (isOnDashboard || isOnSeed) {
+    if (!isLoggedIn) {
+      return Response.redirect(new URL("/login", nextUrl))
+    }
+    return null
+  }
+
+  // Redirect logged in users away from login page
+  if (isOnLogin && isLoggedIn) {
+    return Response.redirect(new URL("/dashboard", nextUrl))
+  }
+
+  return null
+})
 
 export const config = {
-  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$|.*\\.svg$).*)"],
 }

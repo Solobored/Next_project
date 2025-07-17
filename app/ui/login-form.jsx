@@ -4,9 +4,8 @@ import { lusitana } from "@/app/ui/fonts"
 import { AtSymbolIcon, KeyIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { ArrowRightIcon } from "@heroicons/react/20/solid"
 import { Button } from "@/app/ui/button"
-import { useFormState, useFormStatus } from "react-dom"
+import { useFormState, useFormStatus } from "react-dom" // Correct import for useFormState
 import { authenticate } from "@/app/lib/actions"
-import { useSearchParams } from "next/navigation"
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -19,8 +18,7 @@ function SubmitButton() {
 }
 
 export default function LoginForm() {
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard"
+  // useFormState is the correct hook for Server Actions in React 19 RC
   const [errorMessage, dispatch] = useFormState(authenticate, undefined)
 
   return (
@@ -62,7 +60,6 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <input type="hidden" name="redirectTo" value={callbackUrl} />
         <SubmitButton />
         <div className="flex h-8 items-end space-x-1" aria-live="polite" aria-atomic="true">
           {errorMessage && (

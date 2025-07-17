@@ -1,38 +1,42 @@
 {
-  "name": "nextjs-dashboard",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
+    "prettier": "prettier --write --ignore-unknown .",
+    "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start",
-    "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seed.js"
+    "seed": "node -r dotenv/config ./scripts/seed.js",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.1",
-    "@vercel/postgres": "^0.10.0",
+    "@heroicons/react": "^2.0.18",
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/bcryptjs": "^2.4.6",
+    "@vercel/postgres": "^0.8.0",
+    "autoprefixer": "10.4.19",
     "bcryptjs": "^2.4.3",
-    "clsx": "^2.1.0",
-    "next": "^14.0.0",
-    "next-auth": "^5.0.0-beta.4",
-    "postgres": "^3.4.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7",
+    "clsx": "^2.0.0",
+    "next": "15.0.0-rc.0",
+    "next-auth": "5.0.0-beta.4",
+    "postcss": "8.4.38",
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "tailwindcss": "3.4.4",
+    "typescript": "5.5.2",
     "use-debounce": "^10.0.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "autoprefixer": "^10.0.1",
-    "dotenv": "^16.3.1",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.0.4",
-    "postcss": "^8.0.1",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5.8.3"
+    "@types/node": "20.14.8",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0-rc.0",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=20.12.0"
   }
 }

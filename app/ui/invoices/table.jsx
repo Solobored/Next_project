@@ -17,7 +17,7 @@ export default async function InvoicesTable({ query, currentPage }) {
                   <div>
                     <div className="mb-2 flex items-center">
                       <Image
-                        src={invoice.image_url || "/placeholder.svg"}
+                        src={invoice.image_url || "/placeholder.svg?height=28&width=28"}
                         className="mr-2 rounded-full"
                         width={28}
                         height={28}
@@ -78,7 +78,7 @@ export default async function InvoicesTable({ query, currentPage }) {
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
                       <Image
-                        src={invoice.image_url || "/placeholder.svg"}
+                        src={invoice.image_url || "/placeholder.svg?height=28&width=28"}
                         className="rounded-full"
                         width={28}
                         height={28}
