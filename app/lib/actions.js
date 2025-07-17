@@ -122,7 +122,7 @@ export async function authenticate(prevState, formData) {
 
 export async function signOutUser() {
   try {
-    await signOut()
+    await signOut({ redirectTo: "/login" }) // Explicitly redirect to /login after sign out
   } catch (error) {
     throw error
   }
