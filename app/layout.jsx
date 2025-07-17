@@ -1,6 +1,9 @@
 import "./ui/global.css"
 import { inter } from "./ui/fonts"
 
+// Force the entire application to be dynamic
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: {
     template: "%s | Acme Dashboard",

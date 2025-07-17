@@ -5,6 +5,9 @@ import { lusitana } from "@/app/ui/fonts"
 import { Suspense } from "react"
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton } from "@/app/ui/skeletons"
 
+// Force this page to be dynamic (not static)
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Dashboard",
 }

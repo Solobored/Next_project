@@ -7,6 +7,9 @@ import { InvoicesTableSkeleton } from "@/app/ui/skeletons"
 import { Suspense } from "react"
 import { fetchInvoicesPages } from "@/app/lib/data"
 
+// Force this page to be dynamic (not static)
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Invoices",
 }

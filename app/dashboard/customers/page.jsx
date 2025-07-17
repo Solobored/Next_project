@@ -3,6 +3,9 @@ import Search from "@/app/ui/search"
 import { fetchFilteredCustomers } from "@/app/lib/data"
 import { Suspense } from "react"
 
+// Force this page to be dynamic (not static)
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Customers",
 }
