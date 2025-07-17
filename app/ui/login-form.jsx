@@ -4,7 +4,7 @@ import { lusitana } from "@/app/ui/fonts"
 import { AtSymbolIcon, KeyIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { ArrowRightIcon } from "@heroicons/react/20/solid"
 import { Button } from "@/app/ui/button"
-import { useFormState, useFormStatus } from "react-dom" // Correct import for useFormState
+import { useFormState, useFormStatus } from "react-dom"
 import { authenticate } from "@/app/lib/actions"
 
 function SubmitButton() {
@@ -18,7 +18,6 @@ function SubmitButton() {
 }
 
 export default function LoginForm() {
-  // useFormState is the correct hook for Server Actions in React 19 RC
   const [errorMessage, dispatch] = useFormState(authenticate, undefined)
 
   return (
