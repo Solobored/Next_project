@@ -66,3 +66,10 @@ export const FormattedCustomersTable = {
   total_pending: "string",
   total_paid: "string",
 }
+
+export const User = {
+  id: "string",
+  name: "string",
+  email: "string",
+  password: "string",
+}
