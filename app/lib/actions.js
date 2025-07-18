@@ -120,10 +120,14 @@ export async function authenticate(prevState, formData) {
   }
 }
 
+// NEW APPROACH: Sign out without NextAuth's redirect, then manually redirect
 export async function signOutUser() {
   try {
-    await signOut({ redirectTo: "/login" }) // Explicitly redirect to /login after sign out
+    // Sign out without any redirect parameter
+    await signOut({ redirect: false })
   } catch (error) {
-    throw error
+    console.error("Sign out error:", error)
   }
+  // Always redirect to login, regardless of signOut success/failure
+  redirect("/login")
 }

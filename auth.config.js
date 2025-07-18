@@ -16,6 +16,7 @@ async function getUser(email) {
 }
 
 export const authConfig = {
+  secret: process.env.AUTH_SECRET,
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -55,5 +56,12 @@ export const authConfig = {
       }
       return true
     },
+  },
+  // Production-specific settings
+  trustHost: true,
+  useSecureCookies: process.env.NODE_ENV === "production",
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
 }
