@@ -4,20 +4,18 @@ export default auth((req) => {
   const { nextUrl } = req
   const isLoggedIn = !!req.auth
 
-  const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
-  const isOnSeed = nextUrl.pathname.startsWith("/seed")
-  const isOnLogin = nextUrl.pathname.startsWith("/login")
-
-  // Protect dashboard and seed routes
-  if (isOnDashboard || isOnSeed) {
-    if (!isLoggedIn) {
-      return Response.redirect(new URL("/login", nextUrl))
-    }
-    return null
+  // If trying to access dashboard without being logged in, redirect to login
+  if (nextUrl.pathname.startsWith("/dashboard") && !isLoggedIn) {
+    return Response.redirect(new URL("/login", nextUrl))
   }
 
-  // Redirect logged in users away from login page
-  if (isOnLogin && isLoggedIn) {
+  // If trying to access seed without being logged in, redirect to login
+  if (nextUrl.pathname.startsWith("/seed") && !isLoggedIn) {
+    return Response.redirect(new URL("/login", nextUrl))
+  }
+
+  // If logged in and trying to access login page, redirect to dashboard
+  if (nextUrl.pathname === "/login" && isLoggedIn) {
     return Response.redirect(new URL("/dashboard", nextUrl))
   }
 
